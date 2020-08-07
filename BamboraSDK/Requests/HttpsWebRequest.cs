@@ -45,6 +45,7 @@ namespace Bambora.NA.SDK.Requests
 		private string _merchantId;
 		private string _passcode;
 		private IWebCommandExecuter _executer = new WebCommandExecuter();
+		private int? _subMerchantId;
 
 		public int MerchantId {
 			set { _merchantId = value.ToString (CultureInfo.InvariantCulture); }
@@ -56,6 +57,11 @@ namespace Bambora.NA.SDK.Requests
 
 		public IWebCommandExecuter WebCommandExecutor { 
 			set { _executer = value; } 
+		}
+
+		public int? SubMerchantId
+		{
+			set { _subMerchantId = value; }
 		}
 
 		public string ProcessTransaction(HttpMethod method, string url)
@@ -72,7 +78,7 @@ namespace Bambora.NA.SDK.Requests
 				Credentials authInfo = null;
 				// this request might not be using authorization
 				if (_passcode != null)
-					authInfo = new Credentials(_merchantId, _passcode, authScheme);
+					authInfo = new Credentials(_merchantId, _passcode, authScheme, _subMerchantId);
 
 				var requestInfo = new RequestObject(method, url, authInfo, data);
 

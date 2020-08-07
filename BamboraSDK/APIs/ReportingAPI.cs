@@ -52,6 +52,7 @@ namespace Bambora.NA.SDK
 
 			HttpsWebRequest req = new HttpsWebRequest () {
 				MerchantId = _configuration.MerchantId,
+				SubMerchantId = _configuration.SubMerchantId,
 				Passcode = _configuration.PaymentsApiPasscode,
 				WebCommandExecutor = _webCommandExecuter
 			};
@@ -90,6 +91,7 @@ namespace Bambora.NA.SDK
 
 			HttpsWebRequest req = new HttpsWebRequest () {
 				MerchantId = _configuration.MerchantId,
+				SubMerchantId = _configuration.SubMerchantId,
 				Passcode = _configuration.ReportingApiPasscode,
 				WebCommandExecutor = _webCommandExecuter
 			};

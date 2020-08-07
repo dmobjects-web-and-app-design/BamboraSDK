@@ -33,6 +33,7 @@ namespace Bambora.NA.SDK
 	public class Configuration
 	{
 		public int MerchantId { get; set;}
+		public int? SubMerchantId { get; set; }
 		public string PaymentsApiPasscode { get; set;}
 		public string ReportingApiPasscode { get; set;}
 		public string ProfilesApiPasscode { get; set;}
