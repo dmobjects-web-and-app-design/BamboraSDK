@@ -40,22 +40,23 @@ namespace Bambora.NA.SDK.Tests
 		private CardPaymentRequest _cardPaymentRequest;
 		private Mock<IWebCommandExecuter> _executer;
         private Gateway _bambora;
-        /// <summary>
-        /// Alternative payment methods
-        /// payment_method = "payment_profile",
-        ///	payment_profile = new {
-        ///		complete = true,
-        ///		customer_code = "D675855E81b448a7bF0dD682DF74e613"
-        ///	},
-        /// //The code is from legato
-        ///		payment_method = "token",
-        ///	token = new 
-        ///	{
-        ///		name = "john doe",
-        ///		code = "gt6-91ced41c-a2c0-4b1b-a838-cf62bbfdda02"
-        ///	},
-        /// </summary>
-        [SetUp]
+
+		/// <summary>
+		/// Alternative payment methods
+		/// payment_method = "payment_profile",
+		///	payment_profile = new {
+		///		complete = true,
+		///		customer_code = "D675855E81b448a7bF0dD682DF74e613"
+		///	},
+		/// //The code is from legato
+		///		payment_method = "token",
+		///	token = new 
+		///	{
+		///		name = "john doe",
+		///		code = "gt6-91ced41c-a2c0-4b1b-a838-cf62bbfdda02"
+		///	},
+		/// </summary>
+		[SetUp]
 		public void Setup()
 		{
 			_cardPaymentRequest = new CardPaymentRequest {
@@ -74,13 +75,14 @@ namespace Bambora.NA.SDK.Tests
 
             _bambora = new Gateway()
             {
-                MerchantId = 300200578,
-                PaymentsApiKey = "4BaD82D9197b4cc4b70a221911eE9f70",
-                ReportingApiKey = "4e6Ff318bee64EA391609de89aD4CF5d",
-                ProfilesApiKey = "D97D3BE1EE964A6193D17A571D9FBC80",
-                ApiVersion = "1"
-            };
-        }
+                MerchantId = Constants.MerchantId,
+				SubMerchantId = Constants.SubMerchantId,
+				PaymentsApiKey = Constants.PaymentsApiKey,
+                ReportingApiKey = Constants.ReportingApiKey,
+                ProfilesApiKey = Constants.ProfilesApiKey,
+                ApiVersion = Constants.ApiVersion
+			};
+		}
 
 		[Test]
 		public void ItShouldHaveATransactionIdForASuccessfulPayment()

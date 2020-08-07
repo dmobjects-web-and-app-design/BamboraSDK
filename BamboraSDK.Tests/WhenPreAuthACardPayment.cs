@@ -41,7 +41,7 @@ namespace Bambora.NA.SDK.Tests
 		private Mock<IWebCommandExecuter> _executer;
         private Gateway _bambora;
 
-        [SetUp]
+		[SetUp]
 		public void Setup()
 		{
 			_cardPaymentRequest = new CardPaymentRequest {
@@ -60,13 +60,14 @@ namespace Bambora.NA.SDK.Tests
 
             _bambora = new Gateway()
             {
-                MerchantId = 300200578,
-                PaymentsApiKey = "4BaD82D9197b4cc4b70a221911eE9f70",
-                ReportingApiKey = "4e6Ff318bee64EA391609de89aD4CF5d",
-                ProfilesApiKey = "D97D3BE1EE964A6193D17A571D9FBC80",
-                ApiVersion = "1"
-            };
-        }
+                MerchantId = Constants.MerchantId,
+				SubMerchantId = Constants.SubMerchantId,
+				PaymentsApiKey = Constants.PaymentsApiKey,
+                ReportingApiKey = Constants.ReportingApiKey,
+                ProfilesApiKey = Constants.ProfilesApiKey,
+                ApiVersion = Constants.ApiVersion
+			};
+		}
 
 		[Test]
 		public void ItShouldHaveATransactionIdForASuccessfulPreAuth()

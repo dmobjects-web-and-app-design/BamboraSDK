@@ -53,8 +53,16 @@ namespace Bambora.NA.SDK.Requests
 			}
 
 			httpRequest.Method = _requestObject.Method.ToString().ToUpper();
-			if (_requestObject.Credentials != null) // we might use this for a no auth connection
+			// we might use this for a no auth connection
+			if (_requestObject.Credentials != null)
+			{
 				httpRequest.Headers.Add("Authorization", GetAuthorizationHeaderString(_requestObject.Credentials));
+				if (_requestObject.Credentials.SubMerchantId != null)
+				{
+					httpRequest.Headers.Add("Sub-Merchant-Id", _requestObject.Credentials.SubMerchantId.ToString());
+				}
+			}
+
 			httpRequest.ContentType = "application/json";
 			//Console.WriteLine("auth: "+GetAuthorizationHeaderString(_requestObject.Credentials));
 			//Console.WriteLine ("URL: "+httpRequest.Method.ToUpper()+" "+Url);

@@ -96,7 +96,7 @@ namespace Bambora.NA.SDK
 			return CreateProfile (token, null, billingAddress, customFields, language, comment);
 		}
 
-		private ProfileResponse CreateProfile(Token token, Card card, Address billingAddress, CustomFields customFields, string language, string comment) {
+		private ProfileResponse CreateProfile(Token token, Card card, Address billingAddress, CustomFields customFields, string language, string comment, int? subMerchantId = null) {
 
 			if (token == null && card == null) {
 				Gateway.ThrowIfNullArgument (null, "Card and Token both null!");
@@ -123,6 +123,7 @@ namespace Bambora.NA.SDK
 
 			HttpsWebRequest req = new HttpsWebRequest () {
 				MerchantId = _configuration.MerchantId,
+				SubMerchantId = _configuration.SubMerchantId,
 				Passcode = _configuration.ProfilesApiPasscode,
 				WebCommandExecutor = _webCommandExecuter
 			};
@@ -155,6 +156,7 @@ namespace Bambora.NA.SDK
 
 			HttpsWebRequest req = new HttpsWebRequest () {
 				MerchantId = _configuration.MerchantId,
+				SubMerchantId = _configuration.SubMerchantId,
 				Passcode = _configuration.ProfilesApiPasscode,
 				WebCommandExecutor = _webCommandExecuter
 			};
@@ -180,6 +182,7 @@ namespace Bambora.NA.SDK
 
 			HttpsWebRequest req = new HttpsWebRequest () {
 				MerchantId = _configuration.MerchantId,
+				SubMerchantId = _configuration.SubMerchantId,
 				Passcode = _configuration.ProfilesApiPasscode,
 				WebCommandExecutor = _webCommandExecuter
 			};
@@ -203,6 +206,7 @@ namespace Bambora.NA.SDK
 
 			HttpsWebRequest req = new HttpsWebRequest () {
 				MerchantId = _configuration.MerchantId,
+				SubMerchantId = _configuration.SubMerchantId,
 				Passcode = _configuration.ProfilesApiPasscode,
 				WebCommandExecutor = _webCommandExecuter
 			};
@@ -234,6 +238,7 @@ namespace Bambora.NA.SDK
 
 			HttpsWebRequest req = new HttpsWebRequest () {
 				MerchantId = _configuration.MerchantId,
+				SubMerchantId = _configuration.SubMerchantId,
 				Passcode = _configuration.ProfilesApiPasscode,
 				WebCommandExecutor = _webCommandExecuter
 			};
@@ -264,6 +269,7 @@ namespace Bambora.NA.SDK
 
 			HttpsWebRequest req = new HttpsWebRequest () {
 				MerchantId = _configuration.MerchantId,
+				SubMerchantId = _configuration.SubMerchantId,
 				Passcode = _configuration.ProfilesApiPasscode,
 				WebCommandExecutor = _webCommandExecuter
 			};
@@ -293,6 +299,7 @@ namespace Bambora.NA.SDK
 
 			HttpsWebRequest req = new HttpsWebRequest () {
 				MerchantId = _configuration.MerchantId,
+				SubMerchantId = _configuration.SubMerchantId,
 				Passcode = _configuration.ProfilesApiPasscode,
 				WebCommandExecutor = _webCommandExecuter
 			};
@@ -328,6 +335,7 @@ namespace Bambora.NA.SDK
 
 			HttpsWebRequest req = new HttpsWebRequest () {
 				MerchantId = _configuration.MerchantId,
+				SubMerchantId = _configuration.SubMerchantId,
 				Passcode = _configuration.ProfilesApiPasscode,
 				WebCommandExecutor = _webCommandExecuter
 			};
@@ -360,6 +368,7 @@ namespace Bambora.NA.SDK
 
 			HttpsWebRequest req = new HttpsWebRequest () {
 				MerchantId = _configuration.MerchantId,
+				SubMerchantId = _configuration.SubMerchantId,
 				Passcode = _configuration.ProfilesApiPasscode,
 				WebCommandExecutor = _webCommandExecuter
 			};
@@ -390,6 +399,7 @@ namespace Bambora.NA.SDK
 
 			HttpsWebRequest req = new HttpsWebRequest () {
 				MerchantId = _configuration.MerchantId,
+				SubMerchantId = _configuration.SubMerchantId,
 				Passcode = _configuration.ProfilesApiPasscode,
 				WebCommandExecutor = _webCommandExecuter
 			};

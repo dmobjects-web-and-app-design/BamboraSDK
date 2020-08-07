@@ -34,12 +34,14 @@ namespace Bambora.NA.SDK.Requests
 		private readonly string _username;
 		private readonly string _password;
 		private readonly string _authScheme;
+		private readonly int? _subMerchantId;
 
-		public Credentials(string username, string password, string authScheme)
+		public Credentials(string username, string password, string authScheme, int? subMerchantId = null)
 		{
 			_username = username;
 			_password = password;
 			_authScheme = authScheme;
+			_subMerchantId = subMerchantId;
 		}
 
 		public string Username
@@ -55,6 +57,11 @@ namespace Bambora.NA.SDK.Requests
 		public string AuthScheme
 		{
 			get { return _authScheme; }
+		}
+
+		public int? SubMerchantId
+		{
+			get { return _subMerchantId; }
 		}
 	}
 }
