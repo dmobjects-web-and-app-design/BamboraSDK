@@ -49,20 +49,22 @@ namespace Bambora.NA.SDK.Tests
             Console.WriteLine ("BEGIN running sample transactions");
             _bambora = new Gateway()
             { 
-                MerchantId = 300200578,
-				PaymentsApiKey = "4BaD82D9197b4cc4b70a221911eE9f70",
-				ReportingApiKey = "4e6Ff318bee64EA391609de89aD4CF5d",
-				ProfilesApiKey = "D97D3BE1EE964A6193D17A571D9FBC80",
-				ApiVersion = "1"
-            };
-            // Payments API
-            SampleTransactions.ProcessPayment ();
+                MerchantId = Constants.MerchantId,
+				SubMerchantId = Constants.SubMerchantId,
+				PaymentsApiKey = Constants.PaymentsApiKey,
+				ReportingApiKey = Constants.ReportingApiKey,
+				ProfilesApiKey = Constants.ProfilesApiKey,
+				ApiVersion = Constants.ApiVersion
+			};
+
+			// Payments API
+			SampleTransactions.ProcessPayment ();
 			SampleTransactions.ProcessDeclinedPayment ();
 			SampleTransactions.ProcessReturns ();
 			SampleTransactions.ProcessPreauthorization ();
 			SampleTransactions.ProcessVoids ();
 			SampleTransactions.ProcessTokenPayment ();
-			SampleTransactions.ProcessPhysicalPayments (); // you need these options (cash and cheque) enabled on your merchant account first			
+			//SampleTransactions.ProcessPhysicalPayments (); // you need these options (cash and cheque) enabled on your merchant account first			
 			SampleTransactions.GetTransaction ();
 			SampleTransactions.QueryTransactions();
 			SampleTransactions.CreateAndDeleteProfile ();
@@ -219,7 +221,7 @@ namespace Bambora.NA.SDK.Tests
 			Assert.AreEqual ("PA", response.TransType);
 
 			// complete the pre-auth and get the money from the customer
-			response = _bambora.Payments.PreAuthCompletion ( response.TransactionId, 60.00M );
+			response = _bambora.Payments.PreAuthCompletion ( response.TransactionId, 60.00M);
 
 			Console.WriteLine ("Pre-auth result: " + response.TransactionId + ", " + response.Message+"\n" );
 
@@ -400,7 +402,7 @@ namespace Bambora.NA.SDK.Tests
 				DateTime.Now.Subtract(TimeSpan.FromMinutes(1)), 
 				DateTime.Now.Add(TimeSpan.FromMinutes(5)), 
 				1, 
-				100, 
+				100,
 				new Criteria[]{
 					new Criteria() {
 						Field = QueryFields.TransactionId, 
@@ -434,7 +436,7 @@ namespace Bambora.NA.SDK.Tests
 				DateTime.Now.Subtract(TimeSpan.FromMinutes(1)), 
 				DateTime.Now.Add(TimeSpan.FromMinutes(5)), 
 				1, 
-				1000, 
+				1000,
 				new Criteria[]{
 					new Criteria() {
 						Field = QueryFields.TransactionId, 
@@ -505,7 +507,7 @@ namespace Bambora.NA.SDK.Tests
 				new Token() {
 					Name = "Jane Doe",
 					Code = token.Token
-				}, 
+				},
 				new Address() {
 					Name = "Jane Doe",
 					AddressLine1 = "123 Fake St.",
@@ -755,7 +757,7 @@ namespace Bambora.NA.SDK.Tests
 
 			response = profile.AddCard (_bambora.Profiles, new Token {
 				Name = "Jane Doe",
-				Code = token.Token
+				Code = token.Token,
 			});
 			Console.WriteLine ("Added tokenized card to profile");
 			Assert.IsNotNull (response);

@@ -51,6 +51,11 @@ namespace Bambora.NA.SDK
 		public int MerchantId { get; set; }
 
 		/// <summary>
+		/// The Bambora sub-merchant ID 
+		/// </summary>
+		public int? SubMerchantId { get; set; }
+
+		/// <summary>
 		/// The API Key (Passcode) for accessing the payments API.
 		/// </summary>
 		public string PaymentsApiKey { 
@@ -101,6 +106,7 @@ namespace Bambora.NA.SDK
 				if (_configuration == null) {
 					_configuration = new Configuration ();
 					_configuration.MerchantId = this.MerchantId;
+					_configuration.SubMerchantId = this.SubMerchantId;
 					_configuration.PaymentsApiPasscode = PaymentsApiKey;
 					_configuration.ReportingApiPasscode = ReportingApiKey;
 					_configuration.ProfilesApiPasscode = ProfilesApiKey;

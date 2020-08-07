@@ -100,7 +100,6 @@ namespace Bambora.NA.SDK.Requests
 		/// <value>The custom fields.</value>
 		[JsonProperty(PropertyName = "custom")]
 		public CustomFields CustomFields { get; set; }
-
 	}
 }
 

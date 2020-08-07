@@ -40,7 +40,8 @@ namespace Bambora.NA.SDK.Tests
 		private ReturnRequest _returnRequest;
 		private Mock<IWebCommandExecuter> _executer;
         private Gateway _bambora;
-        [SetUp]
+
+		[SetUp]
 		public void Setup()
 		{
 			_returnRequest = new ReturnRequest () {
@@ -52,13 +53,14 @@ namespace Bambora.NA.SDK.Tests
 
             _bambora = new Gateway()
             {
-                MerchantId = 300200578,
-                PaymentsApiKey = "4BaD82D9197b4cc4b70a221911eE9f70",
-                ReportingApiKey = "4e6Ff318bee64EA391609de89aD4CF5d",
-                ProfilesApiKey = "D97D3BE1EE964A6193D17A571D9FBC80",
-                ApiVersion = "1"
-            };
-        }
+                MerchantId = Constants.MerchantId,
+				SubMerchantId = Constants.SubMerchantId,
+				PaymentsApiKey = Constants.PaymentsApiKey,
+                ReportingApiKey = Constants.ReportingApiKey,
+                ProfilesApiKey = Constants.ProfilesApiKey,
+                ApiVersion = Constants.ApiVersion
+			};
+		}
 
 		[Test]
 		public void ItShouldHaveATransactionIdForASuccessfulReturn()
@@ -71,7 +73,7 @@ namespace Bambora.NA.SDK.Tests
 			_bambora.WebCommandExecuter = _executer.Object;
 
 			// Act
-			dynamic result = _bambora.Payments.Return(TrnId,_returnRequest);
+			dynamic result = _bambora.Payments.Return(TrnId, _returnRequest);
 
 			// Assert
 			Assert.AreEqual(result.TransactionId, "10000000");
@@ -87,7 +89,7 @@ namespace Bambora.NA.SDK.Tests
 
 			// Act
 			var ex = (ArgumentNullException)Assert.Throws(typeof(ArgumentNullException),
-				() => _bambora.Payments.Return(TrnId,_returnRequest));
+				() => _bambora.Payments.Return(TrnId, _returnRequest));
 
 			// Assert
 			Assert.That(ex.ParamName, Is.EqualTo("returnRequest"));
@@ -104,7 +106,7 @@ namespace Bambora.NA.SDK.Tests
 
 			// Act
 			var ex = (ArgumentNullException)Assert.Throws(typeof(ArgumentNullException),
-				() => _bambora.Payments.Return(TrnId,_returnRequest));
+				() => _bambora.Payments.Return(TrnId, _returnRequest));
 
 			// Assert
 			Assert.That(ex.ParamName, Is.EqualTo(("paymentId")));
@@ -122,7 +124,7 @@ namespace Bambora.NA.SDK.Tests
 
 			// Act
 			var ex = (ForbiddenException)Assert.Throws(typeof(ForbiddenException),
-				() => _bambora.Payments.Return(TrnId,_returnRequest));
+				() => _bambora.Payments.Return(TrnId, _returnRequest));
 
 			// Assert
 			Assert.That(ex.StatusCode, Is.EqualTo((int)HttpStatusCode.Forbidden));
@@ -139,7 +141,7 @@ namespace Bambora.NA.SDK.Tests
 
 			// Act
 			var ex = (UnauthorizedException)Assert.Throws(typeof(UnauthorizedException),
-				() => _bambora.Payments.Return(TrnId,_returnRequest));
+				() => _bambora.Payments.Return(TrnId, _returnRequest));
 
 			// Assert
 			Assert.That(ex.StatusCode, Is.EqualTo((int)HttpStatusCode.Unauthorized));
@@ -156,7 +158,7 @@ namespace Bambora.NA.SDK.Tests
 
 			// Act
 			var ex = (BusinessRuleException)Assert.Throws(typeof(BusinessRuleException),
-				() => _bambora.Payments.Return(TrnId,_returnRequest));
+				() => _bambora.Payments.Return(TrnId, _returnRequest));
 
 			// Assert
 			Assert.That(ex.StatusCode, Is.EqualTo((int)HttpStatusCode.PaymentRequired));
@@ -173,7 +175,7 @@ namespace Bambora.NA.SDK.Tests
 
 			// Act
 			var ex = (InvalidRequestException)Assert.Throws(typeof(InvalidRequestException),
-				() => _bambora.Payments.Return(TrnId,_returnRequest));
+				() => _bambora.Payments.Return(TrnId, _returnRequest));
 
 			// Assert
 			Assert.That(ex.StatusCode, Is.EqualTo((int)HttpStatusCode.PaymentRequired));
@@ -190,7 +192,7 @@ namespace Bambora.NA.SDK.Tests
 
 			// Act
 			var ex = (InternalServerException)Assert.Throws(typeof(InternalServerException),
-				() => _bambora.Payments.Return(TrnId,_returnRequest));
+				() => _bambora.Payments.Return(TrnId, _returnRequest));
 
 			// Assert
 			Assert.That(ex.StatusCode, Is.EqualTo((int)HttpStatusCode.InternalServerError));
@@ -207,7 +209,7 @@ namespace Bambora.NA.SDK.Tests
 
 			// Act
 			var ex = (CommunicationException)Assert.Throws(typeof(CommunicationException),
-				() => _bambora.Payments.Return(TrnId,_returnRequest));
+				() => _bambora.Payments.Return(TrnId, _returnRequest));
 
 			// Assert
 			Assert.That(ex.Message, Is.EqualTo("API exception occured"));
